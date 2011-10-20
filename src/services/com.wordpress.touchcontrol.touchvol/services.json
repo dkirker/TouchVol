@@ -1,0 +1,40 @@
+{
+"id": "com.wordpress.touchcontrol.touchvol",
+"description": "Service interface to alsa amixer",
+"services": [ {
+	"name": "com.wordpress.touchcontrol.touchvol",
+	"description": "A service for partial control over touchpad relevant amixer controls.",
+	"commands": [ 
+	{ 
+		"name": "change", 
+		"assistant": "amixerAssistant",
+		"public": true
+	},
+	{ 
+		"name": "get", 
+		"assistant": "amixerReadAssistant",
+		"public": true
+	},
+	{
+		"name": "save", 
+		"assistant": "amixerSaveAssistant",
+		"public": true
+	},
+	{ 
+		"name": "lunaSender", 
+		"assistant": "lunaSetAssistant",
+		"public": true
+	},
+	{ 
+		"name": "lunaGetter", 
+		"assistant": "lunaGetAssistant",
+		"public": true
+	},
+	{ 
+		"name": "lunaRecieve", 
+		"assistant": "lunaSubscribeAssistant",
+		"public": true
+	}
+	] 
+}]
+}

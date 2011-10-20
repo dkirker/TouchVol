@@ -1,0 +1,12 @@
+{
+	"id": "com.wordpress.touchcontrol.touchvol",
+	"package_format_version": 2,
+	"loc_name": "Volume control for Touchpad",
+	"version": "0.0.1",
+	"icon": "icon.png",
+	"miniicon": "icon.png",
+	"vendor": "Me",
+	"vendorurl": "http://touchcontrol.wordpress.com",
+	"app": "com.wordpress.touchcontrol.touchvol",
+	"services": ["com.wordpress.touchcontrol.touchvol"]
+}

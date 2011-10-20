@@ -1,0 +1,9 @@
+Package: com.wordpress.touchcontrol.touchvol
+Version: 0.0.1
+Section: System Utilities
+Priority: optional
+Depends: ca.canucksoftware.js-service-framework
+Architecture: all
+Maintainer: Paul Stone <joethebob@gmail.com>
+Description: TouchVol
+Source: {"Homepage":"http://touchcontrol.wordpress.com","Category":"System Utilities","LastUpdated":"","License":"GPL","Type":"Application","FullDescription":"Volume Control for Touchpad","PostRemoveFlags":"","PostUpdateFlags":"RestartLuna","Icon":"icon.png","Title":"TouchVol Service","PostInstallFlags":"RestartLuna"}
