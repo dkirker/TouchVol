@@ -12,17 +12,23 @@ fi
 /bin/mkdir -p /var/palm/ls2/services/prv
 /bin/mkdir -p /var/palm/ls2/services/pub
 
+#clean up any existing or misnamed service entries
+#/bin/rm -rf /var/palm/ls2/services/prv/$ID*
+#/bin/rm -rf /var/palm/ls2/services/pub/$ID*
+
 #copy dbus service file
 /bin/cp -f $SERVICES_PATH/dbus /var/palm/ls2/services/prv/$ID.service
 /bin/cp -f $SERVICES_PATH/dbus /var/palm/ls2/services/pub/$ID.service
 
+
+
 /bin/mkdir -p /var/palm/event.d
 
-/sbin/initctl stop $ID
+/sbin/stop $ID
 /bin/rm -f /var/palm/event.d/$ID
 /bin/echo description \"TouchVol Service\" > /var/palm/event.d/$ID
 /bin/echo start on stopped finish >> /var/palm/event.d/$ID
-/bin/echo exec /usr/sbin/alsactl -f $APP_PATH/amixer-default.state restore 0 >> /var/palm/event.d/$ID
+/bin/echo exec /usr/bin/amixer -s \< $APP_PATH/scripts/amixer-restore.state >> /var/palm/event.d/$ID
 /bin/chmod 755 /var/palm/event.d/$ID
 
 exit 0

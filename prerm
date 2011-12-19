@@ -7,12 +7,26 @@ if [ -z "$IPKG_OFFLINE_ROOT" ]; then
 	/usr/sbin/rootfs_open -w
 fi
 
-/sbin/initctl stop $ID
-
 #remove dbus service file
-/bin/rm -f /var/palm/ls2/services/prv/$ID.service
-/bin/rm -f /var/palm/ls2/services/pub/$ID.service
-
+/bin/rm -f /var/palm/ls2/services/prv/$ID*
+/bin/rm -f /var/palm/ls2/services/pub/$ID*
+#stop upstart script
+/sbin/stop $ID
+#remove upstart script
 /bin/rm -f /var/palm/event.d/$ID
-/bin/rm -f $APP_PATH/amixer-default.state
+#stop any app instances
+count=$(/usr/bin/luna-send -f -n 1 palm://com.palm.applicationManager/running {} | /bin/grep -c com.wordpress.touchcontrol.touchvol)
+for c in `seq 1 $count`	
+do
+	i=$(/usr/bin/luna-send -f -n 1 palm://com.palm.applicationManager/running {} | /bin/grep -A 1 com.wordpress.touchcontrol.touchvol | sed -n '2p' | cut -d: -f2 | tr -d '"'| tr -d ' ')
+	/usr/bin/luna-send -n 1 palm://com.palm.applicationManager/close '{"processId":"'$i'"}'
+done
+#remove luna patch - should be safe to run remove even if not installed
+/bin/sh $APP_PATH/scripts/rem-lunapatch.sh
+#remove state file since it wasn't put there by installer
+/bin/rm -f $APP_PATH/scripts/amixer-restore.state
+#remove launchpoints as they won't be good once app is removed
+if [ "$(ls -A /var/luna/launchpoints/)" ]; then 
+	rm -f `grep -l  '\"id\": \"com.wordpress.touchcontrol.touchvol\"' /var/luna/launchpoints/*`
+fi
 exit 0

@@ -30,11 +30,22 @@
 		"assistant": "lunaGetAssistant",
 		"public": true
 	},
+	{
+		"name": "Pulseflip",
+		"assistant": "PulseAssistant",
+		"public": true
+	},
+	{
+		"name": "lunaPatch",
+		"assistant": "patchAssistant",
+		"public": true
+	},
 	{ 
 		"name": "lunaRecieve", 
 		"assistant": "lunaSubscribeAssistant",
-		"public": true
-	}
+		"public": false,
+		"subscribe": true
+	}	
 	] 
 }]
 }

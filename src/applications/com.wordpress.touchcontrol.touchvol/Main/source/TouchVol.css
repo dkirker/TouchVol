@@ -1,0 +1,76 @@
+body {
+	font-family: Prelude, Prelude Medium, Segoe UI, Arial, Helvetica, Sans-Serif;
+	font-size: 14pt;
+	cursor: default;
+	color:white;
+	background-color: #000000;
+}
+
+.box {
+	border: 1px solid gray;
+}
+
+.vertical {
+-webkit-transform: rotate(90deg);
+height:0px;
+width:0px;
+}
+
+.enyo-slider {
+padding: 1px 9px;
+}
+
+
+.enyo-slider-button {
+    height: 40px;
+    width: 40px;
+    z-index: 50;
+    background: url(images/slider-handle2.png);
+    position: absolute;
+    margin: -14px -20px;
+	background-position-y: -40px;
+}
+
+.enyo-modaldialog {
+	border-width:10px;
+}
+
+.enyo-modaldialog-title {
+	margin-top:10px;
+}
+
+.enyo-slider-button.enyo-button-down {
+background-position-y: -40px;
+}
+
+.enyo-header-inner {
+padding: 1px;
+}
+
+.enyo-group {
+margin: 0px
+}
+
+.enyo-popup {
+-webkit-border-image: url(images/popup.png) 24 24 24 24 stretch stretch;
+}
+
+.inputBox-popup{
+color:white
+}
+
+#main_app_appmenuProfilesBox {
+border: solid;
+border-left-width: 0px;
+border-right-width: 0px;
+border-top-width: 0px;
+border-bottom-width: 1px;
+border-color: black;
+}
+
+#main_app_Opacity_button.enyo-slider-button {
+background: url(images/slider-handle.png);
+width:30px;
+height:30px;
+margin-top:-10px;
+}

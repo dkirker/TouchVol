@@ -1,10 +1,11 @@
 {
 	"id": "com.wordpress.touchcontrol.touchvol",
-	"version": "0.0.1",
-	"vendor": "Me",
+	"version": "0.1.0",
+	"vendor": "TouchControl",
 	"type": "web",
 	"main": "index.html",
 	"title": "TouchVol",
 	"icon": "icon.png",
-	"uiRevision":2
+	"uiRevision":2,
+	"noWindow":true
 }

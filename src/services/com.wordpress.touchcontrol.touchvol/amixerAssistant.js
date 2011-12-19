@@ -11,8 +11,7 @@ exec(cmd, function() { future.result = {"return":"No reason to processs returns 
 function amixerSaveAssistant() {};
 amixerSaveAssistant.prototype.run = function(future) {
 this.future = future;
-var inArgs = this.controller.args;
-var cmd = "/usr/sbin/alsactl -f /media/cryptofs/apps/usr/palm/applications/com.wordpress.touchcontrol.touchvol/amixer-" + inArgs.file + ".state store 0";
+var cmd = "/bin/sh /media/cryptofs/apps/usr/palm/applications/com.wordpress.touchcontrol.touchvol/scripts/store-amixer.sh";
 var appid = this.controller.message.applicationID();
 var exec = require("child_process").exec;
 if (appid.substr(0,appid.indexOf(" ")) == "com.wordpress.touchcontrol.touchvol") {
@@ -29,7 +28,7 @@ amixerReadAssistant.prototype.run = function(future) {
 this.future = future;
 
 this.command = "/usr/bin/amixer | egrep -A 6 -E \"(AIF1DAC1 EQ)|(AIF1 Boost)|(AIF1DAC1 3D Stereo)|'Headphone'\"";
-amixergo(this.command, function(hidden) {
+consolego(this.command, function(hidden) {
 	var txtresult = hidden;
 	results = new Object();
 
@@ -97,7 +96,32 @@ amixergo(this.command, function(hidden) {
 	}.bind(this));
 };
 
-function amixergo(command, callback) {
+function patchAssistant() {};
+patchAssistant.prototype.run = function(future) {
+this.future = future;
+var inArgs = this.controller.args;
+var appid = this.controller.message.applicationID();
+if (inArgs.command == "install") {
+	this.command = "/bin/sh /media/cryptofs/apps/usr/palm/applications/com.wordpress.touchcontrol.touchvol/scripts/inst-lunapatch.sh";
+} else if (inArgs.command == "remove") {
+	this.command = "/bin/sh /media/cryptofs/apps/usr/palm/applications/com.wordpress.touchcontrol.touchvol/scripts/rem-lunapatch.sh";
+}
+if (appid.substr(0,appid.indexOf(" ")) == "com.wordpress.touchcontrol.touchvol") {
+	consolego(this.command, function(hidden) { 
+		this.future.result = hidden; 
+		console.log ("result: " + this.future.result);
+		if (this.future.result.substring(0,4) == "Done") {
+			this.command = "/usr/bin/pkill LunaSysMgr"
+			consolego(this.command, function(whatever) { }.bind(this));
+		}
+	}.bind(this));
+}
+else {
+	this.future.result = {"error":"Reserved for internal use"};
+}
+};
+
+function consolego(command, callback) {
 var cmd = new CommandLine(command);
 cmd.run(function(response) {
 		//console.log("XXXXXXX" + response.stdout + "XXXXXXXXXX")
@@ -161,5 +185,22 @@ cmd.run(function(response) {
 			this.future.result = jsonresponse;
 		}
 	});
+};
+
+function PulseAssistant() {};
+PulseAssistant.prototype.run = function(future) {
+this.future = future;
+var appid = this.controller.message.applicationID();
+
+if (appid.substr(0,appid.indexOf(" ")) == "com.wordpress.touchcontrol.touchvol") {
+var cmd = "/sbin/stop pulseaudio; /sbin/stop audiod; sleep 1; /sbin/start pulseaudio; sleep 2; /sbin/start audiod";
+var exec = require("child_process").exec;
+exec(cmd, function() { 
+	future.result = {"return":"No reason to processs returns for this method, too bad!"};
+});
+}
+else {
+this.future.result = {"error":"Reserved for internal use"};
+}
 };
 

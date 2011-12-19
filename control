@@ -1,9 +1,9 @@
 Package: com.wordpress.touchcontrol.touchvol
-Version: 0.0.1
-Section: System Utilities
-Priority: optional
-Depends: ca.canucksoftware.js-service-framework
+Version: 0.1.0
+Section: misc
+Depends: ca.canucksoftware.js-service-framework, ca.canucksoftware.filemgr
 Architecture: all
-Maintainer: Paul Stone <joethebob@gmail.com>
+Filename: com.wordpress.touchcontrol.touchvol_0.1.0_all.ipk
 Description: TouchVol
-Source: {"Homepage":"http://touchcontrol.wordpress.com","Category":"System Utilities","LastUpdated":"","License":"GPL","Type":"Application","FullDescription":"Volume Control for Touchpad","PostRemoveFlags":"","PostUpdateFlags":"RestartLuna","Icon":"icon.png","Title":"TouchVol Service","PostInstallFlags":"RestartLuna"}
+Maintainer: Paul Stone <http://touchcontrol.wordpress.com>
+Source: {"Homepage":"http://touchcontrol.wordpress.com", "Category":"System Utilities", "LastUpdated":"1324121944", "License":"GPL", "Type":"Application", "Screenshots":[ "http://cdn.precentral.net/resources/application-screenshot/000/016/218/touchvol_2011-17-12_051807.png", "http://cdn.precentral.net/resources/images/000/105/887/original/touchvol_2011-17-12_052000.png", "http://cdn.precentral.net/resources/images/000/105/888/original/touchvol_2011-17-12_052006.png",  "http://cdn.precentral.net/resources/images/000/105/886/original/Unknown_2011-17-12_052255.png" ], "FullDescription":"Volume Control for the Touchpad & Pre3<br><br>Many new features for version 0.1.0:<br>  Background images, Colored sliders, Profiles, Launcher shortcuts, Pulse reset, About Info screen, UI tweaks.<br><br><b>Optional Patch:</b> There is a luna patch installable from within the TouchVol app menu which allows a stub launcher to run at startup and stay active to handle launchpoint requests.  This is optional and replaces the dashboard launcher which will start by default when you run a launchpoint.  An included message window will also appear with more detail when you run a launchpoint without the patch installed.", "PostUpdateFlags":"RestartLuna", "Icon":"http://cdn.precentral.net/resources/application-icons/000/016/218/icon.png", "Title":"TouchVol", "PostInstallFlags":"", "PostRemoveFlags":"RestartLuna", "Source":"http://cdn.precentral.net/resources/applications/000/016/218/com.wordpress.touchcontrol.touchvol_0.1.0_all.ipk", "Location":"http://cdn.precentral.net/resources/applications/000/016/218/com.wordpress.touchcontrol.touchvol_0.1.0_all.ipk", "Feed":"PreCentral" }

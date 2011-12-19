@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TouchVol</title>
+      <!-- <script src="../../../../../webos_sdk/SDK/share/framework/enyo/1.0/framework/enyo.js" type="text/javascript"></script> -->
+		 
+	 <script src="/usr/palm/frameworks/enyo/1.0/framework/enyo.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+        
+        enyo.create({kind: "touchvolDash"}).renderInto(document.body);
+        
+        </script>
+		
+    </body>
+</html>

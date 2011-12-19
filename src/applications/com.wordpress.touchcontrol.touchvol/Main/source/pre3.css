@@ -1,0 +1,28 @@
+body {
+font-size: 11pt;
+}
+
+.enyo-button {
+padding:0px;
+font-size:11pt;
+}
+
+.enyo-toolbar{
+min-height:36px;
+}
+
+.enyo-toggle-button{
+padding-top:0px;
+padding-bottom:0px;
+}
+
+.enyo-slider-progress{
+margin-bottom:10px;
+margin-top:10px;
+}
+
+#main_app_Bottom {
+-webkit-box-flex:1
+}
+
+
