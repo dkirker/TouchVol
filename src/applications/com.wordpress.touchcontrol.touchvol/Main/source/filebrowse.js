@@ -9,9 +9,9 @@ enyo.kind({
         onSelectFile: ""
   },
 	components: [
-		{kind: "PalmService", name: "listDirs", service: "palm://ca.canucksoftware.filemgr", method: "listDirs", onSuccess: "gotDirs", onFailure: "errorMessage"},
-		{kind: "PalmService", name: "listFiles", service: "palm://ca.canucksoftware.filemgr", method: "listFiles", onSuccess: "gotFiles", onFailure: "errorMessage"},
-		{kind: "PalmService", name: "getParent", service: "palm://ca.canucksoftware.filemgr", method: "getParent", onSuccess: "gotParent", onFailure: "errorMessage"},
+		{kind: "PalmService", name: "listDirs", service: "palm://com.wordpress.touchcontrol.touchvol", method: "listDirs", onSuccess: "gotDirs", onFailure: "errorMessage"},
+		{kind: "PalmService", name: "listFiles", service: "palm://com.wordpress.touchcontrol.touchvol", method: "listFiles", onSuccess: "gotFiles", onFailure: "errorMessage"},
+		{kind: "PalmService", name: "getParent", service: "palm://com.wordpress.touchcontrol.touchvol", method: "getParent", onSuccess: "gotParent", onFailure: "errorMessage"},
 		
 		{kind: "ModalDialog", name: "errorPopup", showKeyboardWhenOpening: false,  layoutKind: "VFlexLayout", caption: "Error Processing last selection, try again.", 
 			components: [
@@ -38,7 +38,7 @@ enyo.kind({
 				]},
 			{kind: "VirtualList", name: "list", onSetupRow: "getSearchListItem", flex: 1,
 					components: [
-					{kind: "HFlexBox", flex: 1, style:"border-bottom:1px solid;border-color:#2C6399", onclick: "selectItem",
+					{kind: "HFlexBox", flex: 1, name:"filebox", style:"border-bottom:1px solid;border-color:#2C6399", onclick: "selectItem",
 						components: [
 							{kind: "Image", name: "icon", style: "padding: 2px; margin-right:10px; height: 24px;"},
 							{name: "entry"} ]
@@ -55,7 +55,7 @@ enyo.kind({
 	
 	create: function() {
 		this.inherited(arguments);
-		currentDirectory = "/media/internal/";
+		currentDirectory = "/media/internal";
 		array = [];
 		this.navigate(currentDirectory, true);
 	
@@ -105,13 +105,16 @@ enyo.kind({
 	
 	getSearchListItem: function(inSender, inIndex){
 		if(array[inIndex]){
-			if(array[inIndex].type == "dir") {
+			if(array[inIndex].type === "dir") {
 				this.$.icon.setSrc("source/images/folder.png");
 			}
-			if(array[inIndex].type == "file") {
+			if(array[inIndex].type === "file") {
 				this.$.icon.setSrc("source/images/file.png");
 			}
-			this.$.entry.setContent(array[inIndex].label);			
+			this.$.entry.setContent(array[inIndex].label);	
+			if (inIndex%2 === 0) {
+				this.$.filebox.addClass('dark-back'); 			
+			}
 			return true;
 		}
 	},
@@ -119,14 +122,14 @@ enyo.kind({
 	selectItem: function(inSender, inEvent){
 		if(array[inEvent.rowIndex]){
 			var item = array[inEvent.rowIndex];
-			if(item.type == "file"){
+			if(item.type === "file"){
 				//inSender.setStyle("background-color:#2C6399");
 				this.doSelectFile(item.value);
 			}
-			else if(item.type == "dir"){
+			else if(item.type === "dir"){
 				this.navigate(item.value, true);
 			}
-			else if(item.type == "parent"){
+			else if(item.type === "parent"){
 				this.$.getParent.call({file: currentDirectory});
 				//this.doSelectFile("some file name");
 			}
@@ -146,10 +149,10 @@ enyo.kind({
 	},
 	changeRoot: function(inSender) {
 		var dir = "";
-		if (inSender.name == "internal") {
+		if (inSender.name === "internal") {
 			dir = "/media/internal";
 		}
-		if (inSender.name == "appspace") {
+		if (inSender.name === "appspace") {
 			dir = "/media/cryptofs/apps/usr/palm/applications/com.wordpress.touchcontrol.touchvol/Main/source/images";
 		}
 		this.navigate(dir, true);

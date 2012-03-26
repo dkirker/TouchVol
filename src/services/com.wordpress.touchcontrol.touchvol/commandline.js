@@ -31,22 +31,11 @@ function CommandLine(cmd, future) {
 		cwd: null,
 		env: null
 	};
-	this.rescan = false;
+	
 };
 
 CommandLine.prototype.setEnv = function(value) {
 	this.options.env = value;
-};
-
-CommandLine.prototype.rescanFileindexer = function(value) {
-	this.rescan = value;
-};
-
-CommandLine.prototype._rescanFileindexer = function(value) {
-	var script = "/media/cryptofs/apps/usr/palm/services/ca.canucksoftware.filemgr/"
-			+ "scripts/fileindexer.sh";
-	var cmd = new CommandLine("/bin/sh " + script);
-	cmd.run();
 };
 
 CommandLine.prototype.run = function(callback) {
@@ -77,9 +66,7 @@ CommandLine.prototype._handleExec = function(error, stdout, stderr) {
 					returnValue:false, commands:this.cmdArray};
 		}
 	}
-	if(this.rescan) {
-		this._rescanFileindexer();
-	}
+	
 };
 
 CommandLine.prototype._parseCmd = function() {

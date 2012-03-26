@@ -34,7 +34,6 @@ padding: 1px 9px;
 .enyo-modaldialog {
 	border-width:10px;
 }
-
 .enyo-modaldialog-title {
 	margin-top:10px;
 }
@@ -48,16 +47,157 @@ padding: 1px;
 }
 
 .enyo-group {
-margin: 0px
+margin: 0px;
+}
+
+.brightness-label {
+top: 3px;
+position: relative;
 }
 
 .enyo-popup {
 -webkit-border-image: url(images/popup.png) 24 24 24 24 stretch stretch;
 }
 
-.inputBox-popup{
-color:white
+.divider-nomargin {
+margin-bottom:0px;
 }
+
+.icon-spacing {
+style: padding: 2px; 
+height: 40px;
+}
+
+.inputBox-popup{
+color:white;
+}
+
+.sliderGroup {
+padding:0px 20px 0px 20px;
+}
+
+.blueButton {
+background-color:#2C6399;
+color:white;
+}
+
+.redButton {
+background-color:red;
+color:white;
+}
+
+.vertical-left2line {
+margin-top:20px;
+margin-left:30px;
+}
+
+.vertical-left1line {
+margin-top:20px;
+margin-left:5px;
+}
+
+.text-padding-small {
+padding: 10px 8px 0px 0px;
+}
+
+.text-padding {
+padding: 10px 15px 0px 0px;
+
+}
+
+.text-padding-med {
+padding: 10px 20px 0px 0px;
+}
+
+.text-padding-large {
+padding: 10px 25px 0px 0px;
+}
+
+.text-zero-height {
+height:0px;
+margin-top:-10px;
+text-align:center;
+}
+
+.margin-left-big {
+margin-left:30px;
+}
+
+.margin-left-small {
+margin-left:5px;
+}
+
+.slider-link {
+position:relative;
+top:-20px;
+left:-15px;
+}
+
+.eq_spacer {
+showing:false;
+}
+
+.roundme {
+border-width: 4px;
+border-color:black;
+border-radius: 5px;
+}
+
+.test-back {
+
+}
+.test-back2 {
+}
+
+.black-dark-back {
+background-color: rgba(0,0,0, 0.2);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.black-darker-back {
+background-color: rgba(0,0,0, 0.4);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.black-darkest-back {
+background-color: rgba(0,0,0, 0.6);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.darker-back {
+background-color: rgba(128, 128, 128, 0.1);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.dark-back {
+background-color: rgba(255, 255, 255, 0.1);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.medium-back {
+background-color: rgba(255, 255, 255, 0.2);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.medium-light-back {
+background-color: rgba(255, 255, 255, 0.4);
+border-width: 4px;
+border-radius: 5px;
+}
+
+.red-back {
+background-color: rgba(255, 0, 0, 0.3);
+border-width: 4px;
+border-radius: 5px;
+}
+
+
 
 #main_app_appmenuProfilesBox {
 border: solid;

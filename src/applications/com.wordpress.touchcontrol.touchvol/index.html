@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License along with thi
          (function () {
          	console.log("Headless index.html loaded");
          	var unloadFunc = function(){
-        		console.info("WINLOG: headless window UNLOAD");
+        		//console.info("WINLOG: headless window UNLOAD");
          		window.removeEventListener('unload', unloadFunc);
          	};
          	window.addEventListener('unload', unloadFunc);

@@ -3,6 +3,7 @@ enyo.kind({
 	kind: enyo.VFlexBox,
 	components: 
 	[
+		{kind: "ApplicationEvents", onWindowParamsChange: "gotWindowParams"},
 		{name: "primary", kind: "Pane", flex: 1, transitionKind: "enyo.transitions.Simple", onSelectView: "viewSelected",
 			  components: [
 				{name: "about", kind: "TouchVol.About" },	
@@ -11,9 +12,16 @@ enyo.kind({
 			  ]
 		},
 	],
+	gotWindowParams: function() {
+		var params = enyo.windowParams;
+		if (params.target) {
+			this.$.app.importProfile(params.target);
+		}
+	},
+	
 	create: function() {
 	// <REMINDER> update this on release
-		this.version = "0.1.0";
+		this.version = "0.1.5";
 		this.req = "";
 		this.inherited(arguments);
 		this.$.primary.selectViewByName("app");
@@ -22,17 +30,15 @@ enyo.kind({
 		this.$.primary.selectViewByName("app");	
 		
 		if (inFile) {
-			//this.$.curValue2.setContent(inSender.name + " - " + inFile);
-			if (this.req == "background") {
+			if (this.req === "background") {
 				this.$.app.setBackground("file", inFile);
 			}
-			if (this.req == "profile") {
+			if (this.req === "profile") {
 				this.$.app.setPopupFile(inFile);
-				//this.$.app.$.curValue.setContent("this was a profile req");
 			}
 		}
 		else {
-			if (this.req == "profile") {
+			if (this.req === "profile") {
 				this.$.app.setPopupFile();
 			}
 		}

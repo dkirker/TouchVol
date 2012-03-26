@@ -6,6 +6,7 @@ enyo.kind({
 			components:[
 				{name: "amixerSetVolume",	method: "change"},
 				{name: "setlunaVolume", 	method: "lunaSender"},
+				{name: "KillLaunchwindow",	method: "KillLaunchwindow"}
 		]},
 	],
    	
@@ -16,38 +17,40 @@ enyo.kind({
    
 	startup: function() {
 		var launcher = this;
-		//console.log("launch.js - got startup");
 		var params = enyo.windowParams;
-		//console.log("params test: " + JSON.stringify(params));
 		launcher.relaunch(params);
 	},
 	
 	relaunch: function(params) {
-		//console.log("launch.js - got relaunch");
 		var windowlist = enyo.windows.getWindows();
-        //for (i in windowlist) {
-			//console.log("window: " + i);
-        //}
-		var checkWindow = enyo.windows.fetchWindow("touchvolDash");
-        //console.log("checkWindow: " + checkWindow);
-		if (params.runProfile) {
-			 if (!checkWindow && !this.started) {
-                //console.log("opening dashboard");
-				enyo.windows.activate("Dash/index.html", "",{});
-                enyo.windows.openDashboard("Dash/popup.html", "touchvolDash", {}, {});
-            }
-			//console.log("launch.js - should have processed profile");
-			this.loadProfile(params.runProfile);
-	        enyo.windows.addBannerMessage("Launching Profile: " + params.runProfile, "{}", "");
+        var checkWindow = enyo.windows.fetchWindow("touchvolDash");
+        var launch = localStorage.getItem("touchvol_launcher_option");
+		if (params.launchedAtBoot) {
+			this.started = true;
 	        return;
 	    }
-	    else if (params.launchedAtBoot) {
-			//console.log("launchedAtBoot relaunch returning");
-            this.started = true;
+		else if (params.dockMode == true && params.windowType == "dockModeWindow") {
+			enyo.windows.openWindow("Main/index.html","TouchVol.Exhibition",{},{window:"dockMode"});
+			return;
+		}
+		else if (params.target) {
+			enyo.windows.activate("Main/index.html", "TouchVol.Main", params);
+			return;
+		}
+		else if (params.runProfile || (launch === "1" && !checkWindow)) {
+			if (!checkWindow && !this.started) {
+                enyo.windows.activate("Dash/index.html", "",{});
+                enyo.windows.openDashboard("Dash/popup.html", "touchvolDash", {}, {webosDragMode:"manual", clickableWhenLocked:true });
+				this.$.KillLaunchwindow.call();
+            }
+			if (params.runProfile) {
+				this.loadProfile(params.runProfile);
+	        	enyo.windows.addBannerMessage("Launching Profile: " + params.runProfile, "{}", "");
+			}
 	        return;
 	    }
 	    else {
-			enyo.windows.activate("Main/index.html", "TouchVol.Main",{});
+			enyo.windows.activate("Main/index.html", "TouchVol.Main", params);
 			return;
 		}
 	},
@@ -59,46 +62,60 @@ enyo.kind({
 			var controlName = key.replace(/_/g, " ");
 			var value = controls[key];
 			//toggles
-			if (key.slice(-3) == " On") {
-				if (controls[key] == true) {
+			if (controlName.slice(-3) === " On") {
+				if (value === true) {
 					var value = "on";
 				}
 				else {
 					var value = "off";
 				}
-				var controlName = controlName.slice(-3);
-				if (controlName == "Balance") { 
-					var Balance_On = controls[key];
-					continue; }
+				var controlName = controlName.slice(0,-3);
 			}
-			else if (key == "Media") {
+			else if (key === "Media") {
 				//luna slider
 				this.$.setlunaVolume.call(
 				{
 					target: "media/setVolume",
 					control: "volume", 
-					value: value
+					value: value,
+					scenario: "media_headset"
+				});
+				this.$.setlunaVolume.call(
+				{
+					target: "media/setVolume",
+					control: "volume", 
+					value: value,
+					scenario: "media_back_speaker"
 				});
 				continue;
 			}
-			else if (key == "System") {
+			else if (key === "System") {
 				//luna slider
 				this.$.setlunaVolume.call(
 					{
 						target: "system/setVolume",
 						control: "volume", 
-						value: value
+						value: value,
+						scenario: ""
 					});
 				continue;
 			}
 			else {
 			//amixer sliders
-				if (key == "Headphone") {
+				if (key === "Headphone") {
 					var Headphone = controls[key];
 					continue;
 				}
-				else if (key == "Balance") {
+				else if (key === "Balance") {
 					var Balance = controls[key];
+					continue;
+				}
+				if (key === "DAC1_L") {
+					var DAC1_L = controls[key];
+					continue;
+				}
+				else if (key === "DAC1_R") {
+					var DAC1_R = controls[key];
 					continue;
 				}
 				else {
@@ -115,8 +132,20 @@ enyo.kind({
 		if (Headphone != null) {
 			controlName = "'Headphone'";
 			value = Headphone;
-			if (Balance != null && Balance_On == true) {
+			if (Balance != null) {
 				value = Headphone + "," + Balance;
+			}
+		this.$.amixerSetVolume.call(
+		{
+			control: controlName, 
+			value: value
+		});
+		}
+		if (DAC1_L != null) {
+			controlName = "'DAC1'";
+			value = DAC1_L;
+			if (DAC1_R != null) {
+				value = DAC1_L + "," + DAC1_R;
 			}
 		this.$.amixerSetVolume.call(
 		{

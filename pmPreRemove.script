@@ -24,4 +24,8 @@ fi
 if [ "$(ls -A /var/luna/launchpoints/)" ]; then 
 	rm -f `grep -l  '\"id\": \"com.wordpress.touchcontrol.touchvol\"' /var/luna/launchpoints/*`
 fi
+# restore default alsa ucm
+/bin/cp -f /usr/share/alsa/ucm/msm-audio/msm_media_case.touchvol-backup /usr/share/alsa/ucm/msm-audio/msm_media_case
+# delete backup ucm
+/bin/rm -f /usr/share/alsa/ucm/msm-audio/msm_media_case.touchvol-backup
 exit 0

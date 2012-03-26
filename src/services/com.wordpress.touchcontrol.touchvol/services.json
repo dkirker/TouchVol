@@ -40,12 +40,57 @@
 		"assistant": "patchAssistant",
 		"public": true
 	},
+	{
+		"name": "ucmPatch",
+		"assistant": "UCMpatchAssistant",
+		"public": true
+	},
+	{
+		"name": "saveFile",
+		"assistant": "saveFileAssistant",
+		"public": true
+	},
+	{
+		"name": "readFile",
+		"assistant": "readFileAssistant",
+		"public": true
+	},
+	{
+		"name": "regHandler",
+		"assistant": "regHandlerAssistant",
+		"public": true
+	},
+		{
+		"name": "KillLaunchwindow",
+		"assistant": "KillLaunchwindowAssistant",
+		"public": true
+	},
 	{ 
 		"name": "lunaRecieve", 
 		"assistant": "lunaSubscribeAssistant",
-		"public": false,
+		"public": true,
 		"subscribe": true
-	}	
+	},
+	{
+		"name": "stopSubscribe",
+		"assistant": "stopSubscribe",
+		"public": true
+	},
+	{
+		"name": "listDirs",
+		"assistant": "listDirsAssistant",
+		"public": true,
+	},
+	{
+		"name": "listFiles",
+		"assistant": "listFilesAssistant",
+		"public": true,
+	},
+	{
+		"name": "getParent",
+		"assistant": "getParentAssistant",
+		"public": true,
+	}
 	] 
 }]
 }

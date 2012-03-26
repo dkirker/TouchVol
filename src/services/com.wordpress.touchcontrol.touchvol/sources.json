@@ -5,12 +5,18 @@
 	}
 },
 {
-	"source": "amixerAssistant.js" 
+	"source": "amixer.js" 
 },
 {
 	"source": "common.js"
 },
 {
 	"source": "commandline.js"
+},
+{
+	"source": "utils.js"
+},
+{
+	"source": "filemgr.js"
 }
 ]

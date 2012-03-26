@@ -11,6 +11,10 @@ font-size:11pt;
 min-height:36px;
 }
 
+.enyo-slider {
+padding-top: 5px;
+}
+
 .enyo-toggle-button{
 padding-top:0px;
 padding-bottom:0px;
@@ -20,9 +24,106 @@ padding-bottom:0px;
 margin-bottom:10px;
 margin-top:10px;
 }
-
-#main_app_Bottom {
--webkit-box-flex:1
+/*
+.enyo-toggle-button-bar.on{
+height: 20px;
+border-width: 0px 20px 0px 6px;
+-webkit-border-image: url(images/toggle-button.png) 1 36 97 15 repeat repeat;
 }
 
+.enyo-toggle-button-bar.off{
+height: 20px;
+border-width: 0px 5px 0px 20px;
+}
 
+.enyo-toggle-button {
+min-width: 32px;
+height: 20px;
+line-height: 20px;
+margin: 3px 0;
+vertical-align: middle;
+}
+*/
+.enyo-toolbar {
+min-height:30px;
+height:34px;
+}
+
+.enyo-button {
+margin-top:0px;
+margin-bottom:0px;
+}
+
+.vertical-left2line {
+margin-top:15px;
+margin-left:35px;
+}
+
+.vertical-left1line {
+margin-top:15px;
+margin-left:15px;
+}
+
+.margin-left-big {
+margin-left:35px;
+}
+
+.margin-left-small {
+margin-left:15px;
+}
+
+.text-padding-small {
+padding: 10px 8px 0px 0px;
+}
+
+.text-padding {
+padding: 10px 10px 0px 0px;
+}
+
+.text-padding-med {
+padding: 10px 15px 0px 0px;
+}
+
+.text-padding-large {
+padding: 10px 20px 0px 0px;
+}
+
+.slider-link {
+position:relative;
+top:-7px;
+left:-7px;
+height:22px;
+}
+
+.divider-nomargin {
+margin-bottom:0px;
+margin-top:0px;
+}
+
+.pre3-show {
+display:null;
+}
+
+.pre3-hide {
+display:none;
+}
+
+.pre3-header-arrow{
+height:28px;
+}
+
+.eq_spacer {
+width:30px;
+}
+
+#main_app_Bottom {
+-webkit-box-flex:1;
+}
+
+.sliderGroup {
+padding: 0px 0px 0px 5px;
+}
+
+#main_app_TL_sliderGroup {
+padding: 0px 0px 0px 20px;
+}

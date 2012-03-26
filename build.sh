@@ -14,5 +14,5 @@ mv * ./usr/palm
 dos2unix `find ./ -name *.js -o -name *.sh -o -name *.css -o -name *.json -name *.html -type f`
 tar -cvzf ../data.tar.gz ./*
 cd ..
-ar -r com.wordpress.touchcontrol.touchvol_0.1.0_all.ipk debian-binary pmPostInstall.script pmPreRemove.script control.tar.gz data.tar.gz
+ar -r com.wordpress.touchcontrol.touchvol_0.1.5_all.ipk debian-binary pmPostInstall.script pmPreRemove.script control.tar.gz data.tar.gz
 rm *.gz
